@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入 / 註冊</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-sub: #6b7280;
+            --border: #d1d5db;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            color: var(--text-sub);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: -2px;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box; /* 確保寬度包含 padding */
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="tabs">
+        <div class="tab active" id="loginTab" onclick="showForm('login')">登入</div>
+        <div class="tab" id="registerTab" onclick="showForm('register')">註冊</div>
+    </div>
+
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="loginEmail">用戶名</label>
+            <input type="email" id="loginEmail" placeholder="請输入您的用户名" required>
+        </div>
+        <div class="form-group">
+            <label for="loginPass">密碼</label>
+            <input type="password" id="loginPass" placeholder="請輸入您的密碼" required>
+        </div>
+        <button type="submit">立即進入</button>
+    </form>
+
+    <form id="registerForm" class="hidden">
+        <div class="form-group">
+            <label for="regUser">用戶名稱</label>
+            <input type="text" id="regUser" placeholder="設定您的用戶名稱" required>
+        </div>
+        <div class="form-group">
+            <label for="regEmail"> 設定密碼 </label>
+            <input type="email" id="regEmail" placeholder="输入您的密码，至少 8 位字元" required>
+        </div>
+        <div class="form-group">
+            <label for="regPass">验证密碼</label>
+            <input type="password" id="regPass" placeholder="再次输入您的密码" required>
+        </div>
+        <button type="submit" style="background-color: #10b981;">建立帐号</button>
+    </form>
+
+    <div class="footer-text">
+        所有數據傳輸均受加密保護
+    </div>
+</div>
+
+<script>
+    function showForm(type) {
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+
+        if (type === 'login') {
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+        } else {
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            loginTab.classList.remove('active');
+            registerTab.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
